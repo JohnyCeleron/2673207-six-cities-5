@@ -1,4 +1,6 @@
 ﻿import { ClassConstructor, plainToInstance } from 'class-transformer';
+import { ValidationErrorField } from '../libs/rest/index.js';
+import { ValidationError } from 'class-validator';
 
 export function generateRandomValue(min:number, max: number, numAfterDigit = 0) {
   return +((Math.random() * (max - min)) + min).toFixed(numAfterDigit);
@@ -6,6 +8,14 @@ export function generateRandomValue(min:number, max: number, numAfterDigit = 0) 
 
 export function generateRandomBoolean(){
   return generateRandomValue(0, 1) === 1;
+}
+
+export function reduceValidationErrors(errors: ValidationError[]): ValidationErrorField[] {
+  return errors.map(({ property, value, constraints}) => ({
+    property,
+    value,
+    messages: constraints ? Object.values(constraints) : []
+  }));
 }
 
 export function getRandomItems<T>(items: T[]):T[] {
