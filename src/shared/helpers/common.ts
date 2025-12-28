@@ -47,3 +47,7 @@ export function fillDTO<T, V>(someDto: ClassConstructor<T>, plainObject: V) {
 export function createErrorObject(errorType: ApplicationError, error: string, details: ValidationErrorField[] = []) {
   return { errorType, error, details };
 }
+
+export function getFullServerPath(host: string, port: number) {
+  return `http://${host}:${port}`;
+}
