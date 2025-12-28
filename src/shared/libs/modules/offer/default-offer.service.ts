@@ -17,6 +17,11 @@ export class DefaultOfferService implements OfferService {
     @inject(Component.CommentModel) private readonly commentModel: types.ModelType<CommentEntity>
   ) {}
 
+  public async exists(documentId: string): Promise<boolean> {
+    const offer = await this.offerModel.findById(documentId).exec();
+    return offer !== null;
+  }
+
   public async updateRatingByComments(offerId: string): Promise<DocumentType<OfferEntity> | null> {
     const comments = await this.commentModel
       .find({offerId})
