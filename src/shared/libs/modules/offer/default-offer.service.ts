@@ -7,8 +7,7 @@ import { OfferEntity } from './offer.entity.js';
 import { CreateUpdateOfferDto } from './dto/create-update-offer.dto.js';
 import { FavoriteEntity } from '../favorite/favorite.entity.js';
 import { CommentEntity } from '../comment/comment.entity.js';
-import { HttpError } from '../../rest/index.js';
-import { StatusCodes } from 'http-status-codes';
+import { AccessException } from './errors/access.exception.js';
 
 @injectable()
 export class DefaultOfferService implements OfferService {
@@ -54,10 +53,10 @@ export class DefaultOfferService implements OfferService {
   public async deleteById(userId: string, offerId: string): Promise<DocumentType<OfferEntity> | null> {
     const offer = await this.offerModel.findById(offerId).exec();
     if (offer?.authorId.toString() !== userId) {
-      throw new HttpError(
-        StatusCodes.FORBIDDEN,
+      throw new AccessException(
         'No access to delete this offer',
-        'DefaultOfferService');
+        'DefaultOfferService'
+      );
     }
 
     return this.offerModel
@@ -68,10 +67,10 @@ export class DefaultOfferService implements OfferService {
   public async updateById(userId: string, offerId: string, dto: CreateUpdateOfferDto): Promise<DocumentType<OfferEntity> | null> {
     const offer = await this.offerModel.findById(offerId).exec();
     if (offer?.authorId.toString() !== userId) {
-      throw new HttpError(
-        StatusCodes.FORBIDDEN,
+      throw new AccessException(
         'No access to update this offer',
-        'DefaultOfferService');
+        'DefaultOfferService'
+      );
     }
 
     return this.offerModel
@@ -122,12 +121,15 @@ export class DefaultOfferService implements OfferService {
   public async findFavoriteOffers(userId: string): Promise<DocumentType<OfferEntity>[]> {
     const favorites = await this.favoriteModel.find({ userId}).exec();
     const offerIds = favorites.map((f) => f.offerId);
-    return this.offerModel
-      .find({
-        _id: {
-          $in: offerIds
-        }
-      }).exec();
+    const offers = await this.offerModel
+      .find({ _id: { $in: offerIds } })
+      .exec();
+
+    offers.forEach((offer) => {
+      offer.favourite = true;
+    });
+
+    return offers;
   }
 
   public async addToFavouriteOffers(userId: string, offerId: string): Promise<DocumentType<OfferEntity> | null> {

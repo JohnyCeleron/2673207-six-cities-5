@@ -15,6 +15,7 @@ import { LoginUserRequest } from './login-user-request.type.js';
 import { CheckUserRdo } from './rdo/check-user.rdo.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { LoginUserDto } from './dto/login-user.dto.js';
+import { UserAlreadyExistsException } from '../auth/errors/user-already-exists.exception.js';
 
 @injectable()
 export class UserController extends BaseController {
@@ -97,11 +98,7 @@ export class UserController extends BaseController {
     const existsUser = await this.userService.findByEmail(body.email);
 
     if (existsUser) {
-      throw new HttpError(
-        StatusCodes.CONFLICT,
-        `User with email «${body.email}» exists.`,
-        'UserController'
-      );
+      throw new UserAlreadyExistsException();
     }
 
     const result = await this.userService.create(body, this.configService.get('SALT'));

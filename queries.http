@@ -21,15 +21,17 @@ Content-Type: application/json
 
 ###
 GET http://localhost:4000/users/check
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMzQ0NzcsImV4cCI6MTc2NzIwNzI3N30.toC62H67JD2OW3PfiihO3bhziev6ItqK5A-J2x6Ic20
 
 ###
 GET http://localhost:4000/offers
 
 ###
+
+###
 POST http://localhost:4000/offers
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMzQ0NzcsImV4cCI6MTc2NzIwNzI3N30.toC62H67JD2OW3PfiihO3bhziev6ItqK5A-J2x6Ic20
 
 {
   "title": "Beautiful apartment in city center",
@@ -65,12 +67,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tI
 
 ###
 
-GET http://localhost:4000/offers/6952a14fb313e39f568a631a
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
+GET http://localhost:4000/offers/6952cedaf084ccaf9ad9b069
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMzQ0NzcsImV4cCI6MTc2NzIwNzI3N30.toC62H67JD2OW3PfiihO3bhziev6ItqK5A-J2x6Ic20
 ###
-PUT http://localhost:4000/offers/6952a14fb313e39f568a631a
+
+PUT http://localhost:4000/offers/6952cedaf084ccaf9ad9b069
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q0QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyOWYzZDM4NDQyNTQxOTM5MzYyZWMiLCJpYXQiOjE3NjcwMjI0MDUsImV4cCI6MTc2NzE5NTIwNX0.M5o6qlefNAI6M8It5-pN8YmtJdEl32xiXgqamRm24h4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMzQ0NzcsImV4cCI6MTc2NzIwNzI3N30.toC62H67JD2OW3PfiihO3bhziev6ItqK5A-J2x6Ic20
 
 {
   "title": "Updated Beautiful apartment in city center",
@@ -85,14 +88,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q0QGV4YW1wbGUuY29tI
     "https://example.com/updated_photo1.jpg",
     "https://example.com/updated_photo2.jpg"
   ],
-  "premium": true,
+  "premium": false,
   "houseType": "apartment",
   "roomCount": 3,
   "guestCount": 5,
   "favourite": true,
   "rating": 4.8,
   "publishDate": "2024-06-20T10:00:00.000Z",
-  "rentalPrice": 18000,
+  "rentalPrice": 20000,
   "conveniences": [
     "Breakfast"
   ],
@@ -103,6 +106,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q0QGV4YW1wbGUuY29tI
     24.456
   ]
 }
+
 ###
 GET http://localhost:4000/offers/premium/Paris
 
@@ -119,23 +123,24 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tI
 }
 
 ###
-GET http://localhost:4000/offers/6952a6f326074bb714a94d04/comments
+GET http://localhost:4000/offers/6952a14fb313e39f568a631a/comments
 
 ###
-DELETE http://localhost:4000/offers/69518a5ff4229156094fcb14
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
+DELETE http://localhost:4000/offers/6952a14fb313e39f568a631a
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMzQ0NzcsImV4cCI6MTc2NzIwNzI3N30.toC62H67JD2OW3PfiihO3bhziev6ItqK5A-J2x6Ic20
 ###
 GET http://localhost:4000/offers/premium/Paris
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
 
 ###
 GET http://localhost:4000/offers/favorites
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMzQ0NzcsImV4cCI6MTc2NzIwNzI3N30.toC62H67JD2OW3PfiihO3bhziev6ItqK5A-J2x6Ic20
 
 ###
-POST http://localhost:4000/offers/favorites/6952a14fb313e39f568a631a
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
+POST http://localhost:4000/offers/favorites/6952d09cf084ccaf9ad9b0a8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMzQ0NzcsImV4cCI6MTc2NzIwNzI3N30.toC62H67JD2OW3PfiihO3bhziev6ItqK5A-J2x6Ic20
+###
 
 ###
-DELETE http://localhost:4000/offers/favorites/6952a14fb313e39f568a631a
+DELETE http://localhost:4000/offers/favorites/6952d09cf084ccaf9ad9b0a8
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0

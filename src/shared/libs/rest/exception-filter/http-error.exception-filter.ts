@@ -7,6 +7,7 @@ import { Logger } from '../../logger/index.js';
 import { HttpError } from '../errors/index.js';
 import { createErrorObject } from '../../../helpers/index.js';
 import { ApplicationError } from '../types/application-error.enum.js';
+import { AccessException } from '../../modules/offer/index.js';
 
 @injectable()
 export class HttpErrorExceptionFilter implements ExceptionFilter {
@@ -22,9 +23,18 @@ export class HttpErrorExceptionFilter implements ExceptionFilter {
     }
 
     this.logger.error(`[HttpErrorException]: ${req.path} # ${error.message}`, error);
-
-    res
-      .status(StatusCodes.BAD_REQUEST)
-      .json(createErrorObject(ApplicationError.CommonError, error.message));
+    if (error instanceof AccessException) {
+      res
+        .status(StatusCodes.FORBIDDEN)
+        .json({
+          errorType: ApplicationError.CommonError,
+          error: error.message,
+          details: [error.detail],
+        });
+    } else {
+      res
+        .status(StatusCodes.BAD_REQUEST)
+        .json(createErrorObject(ApplicationError.CommonError, error.message));
+    }
   }
 }
