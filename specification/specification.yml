@@ -122,6 +122,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
+  /users/{userId}/avatar:
+    post:
+      tags:
+        - Users
+      summary: Загрузить изображение аватара
+      description: Загружает изображение аватара пользователя. Изображение
+        аватара должно быть в формате `png` или `jpg`.
+      responses:
+          '201':
+            description: Аватар успешно загружен
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/UploadUserAvatarRdo'
+
   /offers:
     get:
       tags: [Offers]
@@ -758,6 +773,14 @@ components:
         commentCount:
           type: integer
           example: 12
+
+    UploadUserAvatarRdo:
+      type: object
+      properties:
+        filepath:
+          type: string
+          format: uri
+          example: "https://example.com/uploads/avatar123.jpg"
 
     CreateCommentDto:
       type: object

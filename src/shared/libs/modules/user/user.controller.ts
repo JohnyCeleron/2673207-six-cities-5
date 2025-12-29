@@ -1,12 +1,11 @@
 import { inject, injectable } from 'inversify';
 import { Request, Response } from 'express';
-import { BaseController, HttpError, HttpMethod, PrivateRouteMiddleware, UploadFileMiddleware, ValidateDtoMiddleware, ValidateObjectIdMiddleware } from '../../../libs/rest/index.js';
+import { BaseController, HttpMethod, PrivateRouteMiddleware, UploadFileMiddleware, ValidateDtoMiddleware, ValidateObjectIdMiddleware } from '../../../libs/rest/index.js';
 import { Logger } from '../../../libs/logger/index.js';
 import { Component } from '../../../types/index.js';
 import { CreateUserRequest } from './create-user-request.type.js';
 import { UserService } from './user-service.interface.js';
 import { Config, RestSchema } from '../../config/index.js';
-import { StatusCodes } from 'http-status-codes';
 import { fillDTO } from '../../../helpers/index.js';
 import { UserRdo } from './rdo/user.rdo.js';
 import { AuthService } from '../auth/index.js';
@@ -16,6 +15,8 @@ import { CheckUserRdo } from './rdo/check-user.rdo.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { LoginUserDto } from './dto/login-user.dto.js';
 import { UserAlreadyExistsException } from '../auth/errors/user-already-exists.exception.js';
+import { AuthException } from '../auth/errors/auth.exception.js';
+import { UploadUserAvatarRdo } from './rdo/upload-user-avatar.rdo.js';
 
 @injectable()
 export class UserController extends BaseController {
@@ -64,10 +65,11 @@ export class UserController extends BaseController {
     });
   }
 
-  public async uploadAvatar(req: Request, res: Response) {
-    this.created(res, {
-      filepath: req.file?.path
-    });
+  public async uploadAvatar({ params, file }: Request, res: Response) {
+    const { userId } = params;
+    const uploadFile = { avatar: file?.filename };
+    await this.userService.updateById(userId, uploadFile);
+    this.created(res, fillDTO(UploadUserAvatarRdo, { filepath: uploadFile.avatar }));
   }
 
   public async login({ body }: LoginUserRequest, res: Response): Promise<void> {
@@ -84,9 +86,8 @@ export class UserController extends BaseController {
     const foundedUser = await this.userService.findByEmail(email);
 
     if (! foundedUser) {
-      throw new HttpError(
-        StatusCodes.UNAUTHORIZED,
-        'Unauthorized',
+      throw new AuthException(
+        'User with given email is unauthorized',
         'UserController'
       );
     }
