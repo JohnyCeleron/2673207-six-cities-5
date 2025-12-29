@@ -40,7 +40,7 @@ export const configRestSchema = convict<RestSchema>({
     doc: 'Salt for password hash',
     format: String,
     env: 'SALT',
-    default: null
+    default: 'secret'
   },
   DB_HOST: {
     doc: 'IP address of the database server (MongoDB)',
@@ -70,18 +70,18 @@ export const configRestSchema = convict<RestSchema>({
     doc: 'Database name (MongoDB)',
     format: String,
     env: 'DB_NAME',
-    default: 'buy-and-sell'
+    default: 'six-cities',
   },
   UPLOAD_DIRECTORY: {
     doc: 'Directory for upload files',
     format: String,
     env: 'UPLOAD_DIRECTORY',
-    default: null
+    default: "upload"
   },
   JWT_SECRET: {
     doc: 'Secret for sign JWT',
     format: String,
     env: 'JWT_SECRET',
-    default: null
+    default: "secret"
   },
 });

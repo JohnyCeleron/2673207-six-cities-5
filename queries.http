@@ -1,25 +1,141 @@
-POST http://localhost:4000/offers
+POST http://localhost:4000/users/register
 Content-Type: application/json
 
 {
-  "title": "Beautiful apartment in Paris",
-  "description": "Spacious apartment with great view",
+  "name": "John Doe",
+  "email": "test5@example.com",
+  "password": "password123",
+  "type": "pro"
+}
+
+###
+
+POST http://localhost:4000/users/login
+Content-Type: application/json
+
+{
+  "email": "test5@example.com",
+  "password": "password123"
+}
+
+
+###
+GET http://localhost:4000/users/check
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
+
+###
+GET http://localhost:4000/offers
+
+###
+POST http://localhost:4000/offers
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
+
+{
+  "title": "Beautiful apartment in city center",
+  "description": "A cozy apartment with great view...",
   "city": "Paris",
-  "previewImage": "https://example.com/image1.jpg",
-  "images": [
-    "https://example.com/img1.jpg",
-    "https://example.com/img2.jpg",
-    "https://example.com/img3.jpg",
-    "https://example.com/img4.jpg",
-    "https://example.com/img5.jpg",
-    "https://example.com/img6.jpg"
+  "imageLink": "https://example.com/preview.jpg",
+  "photoLinks": [
+    "https://example.com/photo1.jpg",
+    "https://example.com/photo2.jpg",
+    "https://example.com/photo1.jpg",
+    "https://example.com/photo2.jpg",
+    "https://example.com/photo1.jpg",
+    "https://example.com/photo2.jpg"
   ],
-  "type": "apartment",
+  "premium": false,
+  "houseType": "apartment",
+  "roomCount": 2,
+  "guestCount": 4,
+  "favourite": false,
+  "rating": 4.5,
+  "publishData": "2024-06-15T10:00:00.000Z",
+  "rentalPrice": 15000,
+  "conveniences": [
+    "Breakfast",
+    "Air conditioning"
+  ],
+  "coordinates": [
+    10,
+    23.456
+  ],
+  "authorId": "6952b367220a571326391a15"
+}
+
+###
+
+GET http://localhost:4000/offers/6952a14fb313e39f568a631a
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
+###
+PUT http://localhost:4000/offers/6952a14fb313e39f568a631a
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q0QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyOWYzZDM4NDQyNTQxOTM5MzYyZWMiLCJpYXQiOjE3NjcwMjI0MDUsImV4cCI6MTc2NzE5NTIwNX0.M5o6qlefNAI6M8It5-pN8YmtJdEl32xiXgqamRm24h4
+
+{
+  "title": "Updated Beautiful apartment in city center",
+  "description": "An updated cozy apartment with great view...",
+  "city": "Paris",
+  "imageLink": "https://example.com/updated_preview.jpg",
+  "photoLinks": [
+    "https://example.com/updated_photo1.jpg",
+    "https://example.com/updated_photo2.jpg",
+    "https://example.com/updated_photo1.jpg",
+    "https://example.com/updated_photo2.jpg",
+    "https://example.com/updated_photo1.jpg",
+    "https://example.com/updated_photo2.jpg"
+  ],
+  "premium": true,
+  "houseType": "apartment",
   "roomCount": 3,
-  "maxGuests": 4,
-  "price": 150,
-  "conveniences": ["WiFi", "AirConditioning"],
-  "author": "507f1f77bcf86cd799439011",
-  "coordinates": [48.8566, 2.3522]
+  "guestCount": 5,
+  "favourite": true,
+  "rating": 4.8,
+  "publishDate": "2024-06-20T10:00:00.000Z",
+  "rentalPrice": 18000,
+  "conveniences": [
+    "Breakfast"
+  ],
+  "authorId": "6952a7d3763e0c97cd50bb2a",
+  "publishData": "2024-06-20T10:00:00.000Z",
+  "coordinates": [
+    11,
+    24.456
+  ]
 }
 ###
+GET http://localhost:4000/offers/premium/Paris
+
+
+###
+POST http://localhost:4000/offers/6952a14fb313e39f568a631a/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
+
+{
+  "text": "Great place to stay!",
+  "userId": "6952b367220a571326391a15",
+  "rating": 3
+}
+
+###
+GET http://localhost:4000/offers/6952a6f326074bb714a94d04/comments
+
+###
+DELETE http://localhost:4000/offers/69518a5ff4229156094fcb14
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
+###
+GET http://localhost:4000/offers/premium/Paris
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
+
+###
+GET http://localhost:4000/offers/favorites
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
+
+###
+POST http://localhost:4000/offers/favorites/6952a14fb313e39f568a631a
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
+
+###
+DELETE http://localhost:4000/offers/favorites/6952a14fb313e39f568a631a
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3Q1QGV4YW1wbGUuY29tIiwibmFtZSI6IkpvaG4gRG9lIiwiaWQiOiI2OTUyYjM2NzIyMGE1NzEzMjYzOTFhMTUiLCJpYXQiOjE3NjcwMjc1NzUsImV4cCI6MTc2NzIwMDM3NX0.n644dAr--lD9RNYTuZzA2FPbRzBBJj9vgMh0nkrf0H0
